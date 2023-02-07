@@ -7,8 +7,8 @@
     <title>Document</title>
     <script>
         "use strict";
-        let d= 15;
-        console.log(d);
+        // let d= 15;
+        // console.log(d);
         // let a = 55;
         // console.log(a);
 
@@ -40,21 +40,33 @@
         //     console.log("The number is " + this);
         // }
 
-        let mobj = {
-            a: this,
-            myfunc : (number)=> {
-                console.log("The number is " + this);
-            }
-        }
+        // let mobj = {
+        //     a: this,
+        //     myfunc : (number)=> {
+        //         console.log("The number is " + this);
+        //     }
+        // }
 
-        mobj.myfunc();
-        console.log(mobj.a);
+        // mobj.myfunc();
+        // console.log(mobj.a);
         
-        setTimeout(() => {
-            console.log("hey you done this.....");
-        }, 5000);
-        console.log("this is the first block"); 
+        // setTimeout(() => {
+        //     console.log("hey you done this.....");
+        // }, 5000);
+        // console.log("this is the first block"); 
+         function findpro(arr1,arr2){
+            var arrprod = arr1.length>arr2.length?arr1:arr2;
+            for(var i=0;i<Math.min(arr1.length,arr2.length);i++){
+                arrprod[i] = arr1[i] * arr2[i];
+            }
+            return arrprod;
+         }
 
+         var arr1 = [1,2,3,1];
+         var arr2 = [2,3,4,5,"prem"];
+
+         console.log(findpro(arr1,arr2));
+ 
     </script>
 </head>
 <body>
