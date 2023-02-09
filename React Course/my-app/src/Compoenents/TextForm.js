@@ -38,16 +38,27 @@ export default function TextForm(props) {
         for (let i = 0; i < newText.length; i++) {
             
             newText[i] = newText[i][0].toUpperCase() + newText[i].slice(1);
-            
         }
         setText(newText.join(". "));
         // console.log('Lowercase was clikced');
     }
 
     const handleAtlClick = ()=>{
-        let newText = text.toLowerCase();
-        setText(newText);
+        let newText = text.toLowerCase().split("");
+
+        for(let i=0;i<newText.length;i+=2){
+            newText[i] = newText[i].toUpperCase();
+        }
+        setText(newText.join(""));
         // console.log('Lowercase was clikced');
+    }
+
+    const handleCopy = ()=>{
+        let newText = document.getElementById('myBox');
+        newText.select();
+        let msg = navigator.clipboard.writeText(newText.value);
+
+        alert(msg);
     }
 
     
@@ -62,24 +73,25 @@ export default function TextForm(props) {
 
     return (
         <>
-        <div className='container mt-5'>
+        <div className={`container mt-5`} style={{color: props.mode==='dark'?'white':'black'}}>
             <h1>{props.heading}</h1>
             <div className="mb-3">
-                <textarea id="myBox" value={text} onChange={handleOnChange} cols="20" rows="10" placeholder="Enter text here" className="form-control"></textarea>
+                <textarea id="myBox" value={text} onChange={handleOnChange} style={{backgroundColor: props.mode==='light'?'white':'#163a70', color: props.mode==='dark'?'white':'black'}} cols="20" rows="10" placeholder="Enter text here" className="form-control"></textarea>
             </div>
-            <div className="pt-3 d-flex justify-content-start">
+            <div className={`pt-3 d-flex justify-content-start`}>
                 <button className="btn btn-primary mx-1" onClick={handleUpClick}>Upper Case</button>
                 <button className="btn btn-primary mx-1" onClick={handleDownClick}>Lower Case</button>
                 <button className="btn btn-primary mx-1" onClick={handleSentenceClick}>Sentence Case</button>
                 <button className="btn btn-primary mx-1" onClick={handleCapClick}>Capitalized Case</button>
                 <button className="btn btn-primary mx-1" onClick={handleAtlClick}>aLtErNaTiNg cAsE</button>
+                <button className="btn btn-primary mx-1" onClick={handleCopy}>Copy Text</button>
                 <button className="btn btn-primary mx-1" onClick={clear}>Clear</button>
                 
             </div>
         </div>
-        <div className="container my-3">
+        <div className="container my-3" style={{color: props.mode==='dark'?'white':'black'}}>
             <h2>Your Text Summary</h2>
-            <p>{text.split(" ").length-1} words and {text.length} characters</p>
+            <p>{text.split(" ").length} words and {text.length} characters</p>
             <h3>Preview</h3>
             <p>{text}</p>
         </div>
