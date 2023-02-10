@@ -1,5 +1,5 @@
 import React from 'react'
-
+import '../App.css';
 import PropTypes from 'prop-types'
      
 
@@ -27,8 +27,18 @@ export default function Navbar(props) {
           </ul>
           <div className={`form-check form-switch  text-${props.mode==='light'?'dark':'light'}`}>
             
-            <input className="form-check-input" onClick={props.toggleMode} type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
-            <label className="form-check-label" for="flexSwitchCheckDefault">Enable Dark Mode</label>
+            <input className="form-check-input"  onClick={props.toggleMode} type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
+            
+          </div>
+          <div className={`form-check form-switch  text-${props.mode==='light'?'dark':'light'}`}>
+            
+            <input className="form-check-input"  onClick={props.toggleMode} type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
+            
+          </div>
+          <div className={`form-check form-switch  text-${props.mode==='light'?'dark':'light'}`}>
+            
+            <input className="form-check-input"  onClick={props.toggleMode} type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
+            <label className="form-check-label" for="flexSwitchCheckDefault">Enable {props.mode==='light'?'Dark':'Light'} Mode</label>
           </div>
           {/* <form className="d-flex" role="search">
             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
@@ -45,7 +55,9 @@ Navbar.prototypes = {
     aboutText:PropTypes.string
 }
 
-// Navbar.defaultProps = {
-//     title:'Trading Forex',
-//     aboutText:'About '
-// }
+Navbar.defaultProps = {
+    title:'Trading Forex',
+    aboutText:'About '
+}
+
+

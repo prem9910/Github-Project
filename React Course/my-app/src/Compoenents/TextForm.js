@@ -7,7 +7,12 @@ export default function TextForm(props) {
     const handleUpClick = ()=> {
         // console.log('Uppercase was clicked: ' + text);
         let newText = text.toUpperCase();
-        setText(newText)
+        if(newText===""){
+            props.showAlert("Text Area cannot be empty!!","warning");
+        }else{    
+            setText(newText);
+            props.showAlert("Converted to UpperCase","success");
+        } 
     }
 
     const handleOnChange = (event)=> {
@@ -16,49 +21,76 @@ export default function TextForm(props) {
     }
 
     const handleDownClick = ()=>{
+        
         let newText = text.toLowerCase();
-        setText(newText);
-        // console.log('Lowercase was clikced');
+        if(newText===""){
+                props.showAlert("Text Area cannot be empty!!","warning");
+            }else{    
+                setText(newText);
+                props.showAlert("Converted to LowerCase","success");
+            }    // console.log('Lowercase was clikced');
     }
     
     const handleCapClick = ()=>{
-        let newText = text.toLowerCase().split(" ");
-
-        for (let i = 0; i < newText.length; i++) {
-            newText[i] = newText[i][0].toUpperCase()+newText[i].slice(1);
-            
+        let newText = text.toLowerCase();
+        if(newText===""){
+            props.showAlert("Text Area cannot be empty!!","warning");
+       
+        }else{
+            let newText = text.toLowerCase().split(" ");
+            for (let i = 0; i < newText.length; i++) {
+                newText[i] = newText[i][0].toUpperCase()+newText[i].slice(1);
+                
+            }
+            setText(newText.join(" "));
+            props.showAlert("Converted to Capitalized","success");
         }
-        setText(newText.join(" "));
-        // console.log('Lowercase was clikced');
+            // console.log('Lowercase was clikced');
     }
 
     const handleSentenceClick = ()=>{
-        let newText = text.toLowerCase().split(". ");
+        
+        let newText = text.toLowerCase();
+        if(newText===""){
+            props.showAlert("Text Area cannot be empty!!","warning");
+       
+        }else{
+            let newText = text.toLowerCase().split(". ");
 
-        for (let i = 0; i < newText.length; i++) {
-            
-            newText[i] = newText[i][0].toUpperCase() + newText[i].slice(1);
+            for (let i = 0; i < newText.length; i++) {
+                
+                newText[i] = newText[i][0].toUpperCase() + newText[i].slice(1);
+            }
+            setText(newText.join(". "));
+            props.showAlert("Converted to Sentence Case","success");
+            // console.log('Lowercase was clikced');
         }
-        setText(newText.join(". "));
-        // console.log('Lowercase was clikced');
     }
 
     const handleAtlClick = ()=>{
-        let newText = text.toLowerCase().split("");
+        let newText = text.toLowerCase();
+        if(newText===""){
+            props.showAlert("Text Area cannot be empty!!","warning");
+       
+        }else{
+            let newText = text.toLowerCase().split("");
 
-        for(let i=0;i<newText.length;i+=2){
-            newText[i] = newText[i].toUpperCase();
-        }
-        setText(newText.join(""));
-        // console.log('Lowercase was clikced');
+            for(let i=0;i<newText.length;i+=2){
+                newText[i] = newText[i].toUpperCase();
+            }
+            setText(newText.join(""));
+            props.showAlert("Converted to Alternating Case","success");
+        }// console.log('Lowercase was clikced');
     }
 
     const handleCopy = ()=>{
-        let newText = document.getElementById('myBox');
+        var newText = document.getElementById('myBox');
         newText.select();
-        let msg = navigator.clipboard.writeText(newText.value);
-
-        alert(msg);
+        
+        // navigator.clipboard.writeText(newText.value);  
+        navigator.clipboard.writeText(newText.value);
+        // return props.showAlert(msg,"success");
+        // props.showAlert("Text copied to clipboard!","success");
     }
 
     
@@ -68,6 +100,7 @@ export default function TextForm(props) {
 
     const clear = ()=>{
         setText("");
+        props.showAlert("Cleared","success");
     }
 
 
@@ -93,7 +126,7 @@ export default function TextForm(props) {
             <h2>Your Text Summary</h2>
             <p>{text.split(" ").length} words and {text.length} characters</p>
             <h3>Preview</h3>
-            <p>{text}</p>
+            <p>{text.length>0?text:"Enter something in the TextBox  above to preview it here."}</p>
         </div>
             
         </>
