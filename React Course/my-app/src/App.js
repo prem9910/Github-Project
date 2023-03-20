@@ -35,11 +35,12 @@ function App() {
       showAlert("Light mode has been enabled","success");
     }
   }
+
    
   return (
     <>
       
-      <Navbar title="TextDotCom" aboutText="About Us" mode={mode} toggleMode={toggleMode} contact="Contact Us"/>
+      <Navbar title="TextDotCom" aboutText="About Us" mode={mode}  toggleMode={toggleMode} contact="Contact Us"/>
       {/* <Navbar/> */}
       <Alerts alert={alert}/>
       <div className="container my-3">
